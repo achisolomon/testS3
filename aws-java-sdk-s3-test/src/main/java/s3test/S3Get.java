@@ -17,22 +17,17 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 
 
-public class GetObject {
-	private static String bucketName = "achi-test"; 
-	private static String key        = "README";      
+public class S3Get {
+	//private static String bucketName = "achi-test"; 
+	//private static String key        = "README";      
 	
-	
-
-	
-	public static void main(String[] args) throws IOException {
-	
-		
+	public static void read(String bucketName, String key) throws IOException {
 		AmazonS3 s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
 	          
         try {
         	
         	
-            System.out.println("Downloading an object");
+        	System.out.println("Downloading an object");
             
             GetObjectRequest gor =  new GetObjectRequest(bucketName, key);
             

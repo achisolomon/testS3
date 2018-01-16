@@ -11,12 +11,13 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class S3Put {
-	private static String bucketName     = "achi-s3-poc01";
-	private static String keyName        = "BorisTheKing";
-	private static String uploadFileName = "/Users/achisolomon/Documents/BorisTheking.txt";
+	//private static String bucketName     = "achi-s3-poc01";
+	//private static String keyName        = "BorisTheKing";
+	//private static String uploadFileName = "/Users/achisolomon/Documents/BorisTheking.txt";
 	
-	public static void main(String[] args) throws IOException {
-        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+	public static void write(String bucketName, String keyName,  String uploadFileName)
+	{
+		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
             System.out.println("Uploading a new object to S3 from a file\n");
             
