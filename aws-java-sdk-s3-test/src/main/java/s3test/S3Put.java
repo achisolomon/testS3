@@ -19,13 +19,13 @@ public class S3Put {
 	{
 		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
-            System.out.println("Uploading a new object to S3 from a file\n");
+            System.out.println("Uploading a new object key="+keyName+"\t to S3 bucket="+bucketName+" from file="+uploadFileName+"\n");
             
             File file = new File(uploadFileName);
             s3client.putObject(new PutObjectRequest(
             		                 bucketName, keyName, file));
-            
-            System.out.println("Uploaded "+keyName+" to S3 from a file\n");
+       
+            System.out.println("Uploaded "+keyName+" to S3 bucket="+bucketName+" from file="+uploadFileName+"\n");
             
          } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which " +

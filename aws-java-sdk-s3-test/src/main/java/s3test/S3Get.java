@@ -18,8 +18,6 @@ import com.amazonaws.services.s3.model.S3Object;
 
 
 public class S3Get {
-	//private static String bucketName = "achi-test"; 
-	//private static String key        = "README";      
 	
 	public static void read(String bucketName, String key) throws IOException {
 		AmazonS3 s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
@@ -27,7 +25,7 @@ public class S3Get {
         try {
         	
         	
-        	System.out.println("Downloading an object");
+        		System.out.println("Downloading an object with key "+key+"\t from bucket"+bucketName);
             
             GetObjectRequest gor =  new GetObjectRequest(bucketName, key);
             
@@ -36,18 +34,11 @@ public class S3Get {
             System.out.println("Content-Type: "  + 
             		s3object.getObjectMetadata().getContentType());
             
-            displayTextInputStream(s3object.getObjectContent());
+
+    			System.out.println("Successfully downloaded an object with key "+key+"\t from bucket"+bucketName);
             
-           // Get a range of bytes from an object.
-            
-            GetObjectRequest rangeObjectRequest = new GetObjectRequest(
-            		bucketName, key);
-            rangeObjectRequest.setRange(0, 10);
-            S3Object objectPortion = s3Client.getObject(rangeObjectRequest);
-            
-            System.out.println("Printing bytes retrieved.");
-            displayTextInputStream(objectPortion.getObjectContent());
-            
+            displayTextInputStream(s3object.getObjectContent()); 
+           
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which" +
             		" means your request made it " +
@@ -64,6 +55,7 @@ public class S3Get {
                     "an internal error while trying to " +
                     "communicate with S3, " +
                     "such as not being able to access the network.");
+        
             System.out.println("Error Message: " + ace.getMessage());
         }
     }
